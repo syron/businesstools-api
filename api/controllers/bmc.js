@@ -48,7 +48,7 @@ function bmc(req, res) {
     valuePropositions: [] 
   };
 
-  canvasData.channels = [ {title: 'a', description: 'abc' }, {title: 'b', description: 'abc' }, {title: 'c', description: 'abc'}];
+  canvasData.channels = [ {title: 'a b c', description: 'a b c' }, {title: 'b', description: 'abc' }, {title: 'c', description: 'abc'}];
   canvasData.costStructure = [{title: 'a', description: 'abc'}];
   canvasData.customerRelationships = [{title: 'a', description: 'abc'}, {title: 'b', description: 'abc' }];
   canvasData.customerSegments = [{title: 'a', description: 'abc'}, {title: 'b', description: 'abc' }, {title: 'c', description: 'abc'}, {title: 'd', description: 'abc'}];
