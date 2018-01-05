@@ -36,7 +36,7 @@ paths:
           description: Success
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/CanvasDataItem"
+            $ref: "#/definitions/CanvasData"
         # responses may fall through to errors
         default:
           description: Error
@@ -53,6 +53,38 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/CanvasDataItem"
+      channels:
+        type: array
+        items:
+          $ref: "#/definitions/CanvasDataItem"
+      costStructure:
+        type: array
+        items:
+          $ref: "#/definitions/CanvasDataItem"
+      customerRelationships:
+        type: array
+        items:
+          $ref: "#/definitions/CanvasDataItem"
+      customerSegments:
+        type: array
+        items:
+          $ref: "#/definitions/CanvasDataItem"
+      keyActivities:
+        type: array
+        items:
+          $ref: "#/definitions/CanvasDataItem"
+      keyPartners:
+        type: array
+        items:
+          $ref: "#/definitions/CanvasDataItem"
+      revenueStreams:
+        type: array
+        items:
+          $ref: "#/definitions/CanvasDataItem"
+      valuePropositions:
+        type: array
+        items:
+          $ref: "#/definitions/CanvasDataItem"
   CanvasDataItem:
     type: object
     properties:
@@ -63,6 +95,9 @@ definitions:
   ErrorResponse:
     required:
       - message
+      - code
     properties:
       message:
         type: string
+      code:
+        type: number
