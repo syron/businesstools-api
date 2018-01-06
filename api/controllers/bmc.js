@@ -48,15 +48,65 @@ function bmc(req, res) {
     valuePropositions: [] 
   };
 
-  canvasData.channels = [ {title: 'a b c', description: 'a b c' }, {title: 'b', description: 'abc' }, {title: 'c', description: 'abc'}];
-  canvasData.costStructure = [{title: 'a', description: 'abc'}];
-  canvasData.customerRelationships = [{title: 'a', description: 'abc'}, {title: 'b', description: 'abc' }];
-  canvasData.customerSegments = [{title: 'a', description: 'abc'}, {title: 'b', description: 'abc' }, {title: 'c', description: 'abc'}, {title: 'd', description: 'abc'}];
-  canvasData.keyActivities = [{title: 'a', description: 'abc'}, {title: 'b', description: 'abc' }, {title: 'c', description: 'abc'}];
-  canvasData.keyPartners = [{title: 'a', description: 'abc'}, {title: 'b', description: 'abc' }, {title: 'c', description: 'abc'}, {title: 'd', description: 'abc'}, {title: 'e', description: 'abc'}, {title: 'f', description: 'abc'}];
-  canvasData.keyResources = [{title: 'a', description: 'abc'}, {title: 'b', description: 'abc' }, {title: 'c', description: 'abc'}, {title: 'd', description: 'abc'}];
-  canvasData.revenueStreams = [{title: 'a', description: 'abc'}, {title: 'b', description: 'abc' }, {title: 'c', description: 'abc'}];
-  canvasData.valuePropositions = [{title: 'a', description: 'abc'}, {title: 'b', description: 'abc' }, {title: 'c', description: 'abc'}, {title: 'd', description: 'abc'}, {title: 'e', description: 'abc'}, {title: 'f', description: 'abc'}];
+  var entities = [
+      {title: 'a', description: 'abc', order: 4, created: '2018-01-06 10:14'}
+    , {title: 'b', description: 'abc', order: 3, created: '2018-01-05 11:24'}
+    , {title: 'c', description: 'abc', order: 5, created: '2018-01-02 14:34'}
+    , {title: 'd', description: 'abc', order: 1, created: '2018-01-03 05:44'}
+    , {title: 'e', description: 'abc', order: 2, created: '2018-01-04 23:54'}
+    , {title: 'f', description: 'abc', order: 6, created: '2018-01-01 09:04'}
+  ];
+
+
+  canvasData.channels = [];
+  canvasData.channels.push(entities[0]);
+  canvasData.channels.push(entities[1]);
+
+  canvasData.costStructure = [];
+  canvasData.costStructure.push(entities[0]);
+  canvasData.costStructure.push(entities[1]);
+  canvasData.costStructure.push(entities[2]);
+
+  canvasData.customerRelationships = [];
+  canvasData.customerRelationships.push(entities[0]);
+  canvasData.customerRelationships.push(entities[1]);
+  canvasData.customerRelationships.push(entities[2]);
+  canvasData.customerRelationships.push(entities[3]);
+  canvasData.customerRelationships.push(entities[4]);
+
+  canvasData.customerSegments = [];
+  canvasData.customerSegments.push(entities[0]);
+  canvasData.customerSegments.push(entities[1]);
+  canvasData.customerSegments.push(entities[2]);
+  canvasData.customerSegments.push(entities[3]);
+  canvasData.customerSegments.push(entities[4]);
+  canvasData.customerSegments.push(entities[5]);
+
+  canvasData.keyActivities = [];
+  canvasData.keyActivities.push(entities[0]);
+  canvasData.keyActivities.push(entities[1]);
+  canvasData.keyActivities.push(entities[2]);
+
+  canvasData.keyPartners = [];
+  canvasData.keyPartners.push(entities[0]);
+  canvasData.keyPartners.push(entities[1]);
+  canvasData.keyPartners.push(entities[2]);
+  canvasData.keyPartners.push(entities[3]);
+
+  canvasData.keyResources = [];
+  canvasData.keyResources.push(entities[0]);
+  canvasData.keyResources.push(entities[1]);
+  canvasData.keyResources.push(entities[2]);
+  canvasData.keyResources.push(entities[3]);
+  canvasData.keyResources.push(entities[4]);
+  canvasData.keyResources.push(entities[5]);
+
+  canvasData.revenueStreams = [];
+  canvasData.revenueStreams.push(entities[0]);
+
+  canvasData.valuePropositions = [];
+  canvasData.valuePropositions.push(entities[0]);
+  canvasData.valuePropositions.push(entities[1]);
 
   // this sends back a JSON response which is a single string
   res.json(canvasData);
