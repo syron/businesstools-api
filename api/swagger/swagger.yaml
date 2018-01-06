@@ -18,13 +18,20 @@ consumes:
 produces:
   - application/json
 paths:
-  /bmc/{id}:
-    # binds a127 app logic to a route
+  /bmc:
     x-swagger-router-controller: bmc
     get:
+      description: Returns a list of all Business Model Canvas that the user has access to.
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/CanvasDataList"
+  /bmc/{id}:
+    x-swagger-router-controller: bmcById
+    get:
       description: Returns the Business Model Canvas data to the caller
-      # used as the method name of the controller
-      operationId: bmc
+      operationId: bmcById
       parameters:
         - name: id
           in: path
@@ -46,6 +53,15 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
+  CanvasDataList:
+    type: object
+    properties:
+      total:
+        type: number
+      items:
+        type: array
+        items:
+          $ref: "#/definitions/CanvasData"
   CanvasData:
     type: object
     properties:
