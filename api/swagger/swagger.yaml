@@ -25,6 +25,23 @@ paths:
       responses:
         200:
           description: OK
+          headers:
+            Pagination-Count:
+              type: number
+              description: 'The number of items in total'
+            Pagination-Page:
+              type: number
+              description: 'The current page'
+            Pagination-Limit:
+              type: number
+              description: 'Max number of pages'
+          schema:
+            $ref: "#/definitions/CanvasDataList"
+    post:
+      description: Creats a new bmc.
+      responses:
+        200:
+          description: OK
           schema:
             $ref: "#/definitions/CanvasDataList"
   /bmc/{id}:
@@ -54,14 +71,9 @@ paths:
 # complex objects have schema definitions
 definitions:
   CanvasDataList:
-    type: object
-    properties:
-      total:
-        type: number
-      items:
-        type: array
-        items:
-          $ref: "#/definitions/CanvasData"
+    type: array
+    items:
+      $ref: "#/definitions/CanvasData"
   CanvasData:
     type: object
     properties:
