@@ -65,6 +65,12 @@ definitions:
   CanvasData:
     type: object
     properties:
+      id:
+        type: number
+      name:
+        type: string
+      designedFor:
+        type: string
       keyResources:
         type: array
         items:
