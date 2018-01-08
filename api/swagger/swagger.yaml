@@ -28,13 +28,13 @@ paths:
           headers:
             Pagination-Count:
               type: number
-              description: 'The number of items in total'
+              description: 'The number of pages available'
             Pagination-Page:
               type: number
               description: 'The current page'
             Pagination-Limit:
               type: number
-              description: 'Max number of pages'
+              description: 'Max number of items per page'
           schema:
             $ref: "#/definitions/CanvasDataList"
     post:
@@ -72,6 +72,7 @@ paths:
             $ref: "#/definitions/ErrorResponse"
     patch:
       description: Updates an existing bmc.
+      operationId: bmcByIdPatch
       parameters:
         - name: id
           in: path
@@ -87,6 +88,7 @@ paths:
     x-swagger-router-controller: bmc
     post:
       description: Gets all items
+      operationId: bmcByIdAddItem
       parameters:
         - in: path
           name: id
@@ -101,6 +103,18 @@ paths:
       responses:
         "200":
           description: Success
+    delete:
+      description: Deletes item
+      operationId: bmcByIdDeleteItem
+      parameters:
+        - in: path
+          name: id
+          description: Id of the current BMC.
+          required: true
+          type: number
+      responses:
+        200:
+          description: OK
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
