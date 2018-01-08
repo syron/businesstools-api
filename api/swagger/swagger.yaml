@@ -87,8 +87,25 @@ paths:
   /bmc/{id}/items:
     x-swagger-router-controller: bmc
     post:
-      description: Gets all items
+      description: Adds a new item
       operationId: bmcByIdAddItem
+      parameters:
+        - in: path
+          name: id
+          description: Id of the current BMC.
+          required: true
+          type: number
+        - in: body
+          name: CanvasItem
+          description: test
+          schema:
+            $ref: "#/definitions/CanvasDataItem"
+      responses:
+        "200":
+          description: Success
+    patch:
+      description: Updates an item
+      operationId: bmcByIdPatchItem
       parameters:
         - in: path
           name: id
