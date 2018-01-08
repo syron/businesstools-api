@@ -25,8 +25,16 @@ var util = require('util');
   we specify that in the exports of this module that 'hello' maps to the function named 'hello'
  */
 module.exports = {
-  bmcById: bmcById
+  bmcById: bmcById,
+  bmcByIdAddItem: bmcByIdAddItem
 };
+
+
+function bmcByIdAddItem(req, res) {
+  console.log('test');
+  var obj = {categoryId: 9, title: 'z', description: 'abc', order: 6, created: '2018-01-01 09:04'};
+  res.json(obj);
+}
 
 /*
   Functions in a127 controllers used for operations should take two parameters:
@@ -50,67 +58,51 @@ function bmcById(req, res) {
   };
 
   var entities = [
-      {title: 'a', description: 'abc', order: 4, created: '2018-01-06 10:14'}
-    , {title: 'b', description: 'abc', order: 3, created: '2018-01-05 11:24'}
-    , {title: 'c', description: 'abc', order: 5, created: '2018-01-02 14:34'}
-    , {title: 'd', description: 'abc', order: 1, created: '2018-01-03 05:44'}
-    , {title: 'e', description: 'abc', order: 2, created: '2018-01-04 23:54'}
-    , {title: 'f', description: 'abc', order: 6, created: '2018-01-01 09:04'}
+      {id: 1, categoryId: 1, title: 'a', description: 'abc', order: 4, created: '2018-01-06 10:14'}
+    , {id: 2, categoryId: 1, title: 'b', description: 'abc', order: 3, created: '2018-01-05 11:24'}
+    , {id: 3, categoryId: 2, title: 'c', description: 'abc', order: 5, created: '2018-01-02 14:34'}
+    , {id: 4, categoryId: 3, title: 'd', description: 'abc', order: 1, created: '2018-01-03 05:44'}
+    , {id: 5, categoryId: 4, title: 'e', description: 'abc', order: 2, created: '2018-01-04 23:54'}
+    , {id: 6, categoryId: 5, title: 'f', description: 'abc', order: 6, created: '2018-01-01 09:04'}
+    , {id: 7, categoryId: 6, title: 'g', description: 'abc', order: 6, created: '2018-01-01 09:04'}
+    , {id: 8, categoryId: 7, title: 'h', description: 'abc', order: 6, created: '2018-01-01 09:04'}
+    , {id: 9, categoryId: 7, title: 'i', description: 'abc', order: 6, created: '2018-01-01 09:04'}
+    , {id: 10, categoryId: 8, title: 'j', description: 'abc', order: 6, created: '2018-01-01 09:04'}
+    , {id: 11, categoryId: 9, title: 'k', description: 'abc', order: 6, created: '2018-01-01 09:04'}
   ];
 
   canvasData.designedFor = 'Kalle Kula AB';
   canvasData.id = 1;
   canvasData.name = 'Test Canvas';
 
-  canvasData.channels = [];
+  canvasData.channels = []; // 1
   canvasData.channels.push(entities[0]);
   canvasData.channels.push(entities[1]);
 
-  canvasData.costStructure = [];
-  canvasData.costStructure.push(entities[0]);
-  canvasData.costStructure.push(entities[1]);
+  canvasData.costStructure = []; // 2
   canvasData.costStructure.push(entities[2]);
 
-  canvasData.customerRelationships = [];
-  canvasData.customerRelationships.push(entities[0]);
-  canvasData.customerRelationships.push(entities[1]);
-  canvasData.customerRelationships.push(entities[2]);
+  canvasData.customerRelationships = []; // 3
   canvasData.customerRelationships.push(entities[3]);
-  canvasData.customerRelationships.push(entities[4]);
 
-  canvasData.customerSegments = [];
-  canvasData.customerSegments.push(entities[0]);
-  canvasData.customerSegments.push(entities[1]);
-  canvasData.customerSegments.push(entities[2]);
-  canvasData.customerSegments.push(entities[3]);
+  canvasData.customerSegments = []; // 4
   canvasData.customerSegments.push(entities[4]);
-  canvasData.customerSegments.push(entities[5]);
 
-  canvasData.keyActivities = [];
-  canvasData.keyActivities.push(entities[0]);
-  canvasData.keyActivities.push(entities[1]);
-  canvasData.keyActivities.push(entities[2]);
+  canvasData.keyActivities = []; // 5
+  canvasData.keyActivities.push(entities[5]);
 
-  canvasData.keyPartners = [];
-  canvasData.keyPartners.push(entities[0]);
-  canvasData.keyPartners.push(entities[1]);
-  canvasData.keyPartners.push(entities[2]);
-  canvasData.keyPartners.push(entities[3]);
+  canvasData.keyPartners = []; // 6
+  canvasData.keyPartners.push(entities[6]);
 
-  canvasData.keyResources = [];
-  canvasData.keyResources.push(entities[0]);
-  canvasData.keyResources.push(entities[1]);
-  canvasData.keyResources.push(entities[2]);
-  canvasData.keyResources.push(entities[3]);
-  canvasData.keyResources.push(entities[4]);
-  canvasData.keyResources.push(entities[5]);
+  canvasData.keyResources = []; // 7
+  canvasData.keyResources.push(entities[7]);
+  canvasData.keyResources.push(entities[8]);
 
   canvasData.revenueStreams = [];
-  canvasData.revenueStreams.push(entities[0]);
+  canvasData.revenueStreams.push(entities[9]);
 
   canvasData.valuePropositions = [];
-  canvasData.valuePropositions.push(entities[0]);
-  canvasData.valuePropositions.push(entities[1]);
+  canvasData.valuePropositions.push(entities[10]);
 
   // this sends back a JSON response which is a single string
   res.json(canvasData);

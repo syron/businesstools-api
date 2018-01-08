@@ -101,8 +101,10 @@ paths:
           schema:
             $ref: "#/definitions/CanvasDataItem"
       responses:
-        "200":
+        200:
           description: Success
+          schema:
+            $ref: "#/definitions/CanvasDataItem"
     patch:
       description: Updates an item
       operationId: bmcByIdPatchItem
