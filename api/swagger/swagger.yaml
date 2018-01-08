@@ -40,12 +40,16 @@ paths:
     post:
       description: Creats a new bmc.
       responses:
-        200:
+        201:
           description: OK
+          headers:
+            Location:
+              type: string
+              description: The location of the newly created item.
           schema:
             $ref: "#/definitions/CanvasDataList"
   /bmc/{id}:
-    x-swagger-router-controller: bmcById
+    x-swagger-router-controller: bmc
     get:
       description: Returns the Business Model Canvas data to the caller
       operationId: bmcById
@@ -66,6 +70,37 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+    patch:
+      description: Updates an existing bmc.
+      parameters:
+        - name: id
+          in: path
+          description: Id of the current BMC.
+          required: true
+          type: number
+      responses: 
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/CanvasDataList"
+  /bmc/{id}/items:
+    x-swagger-router-controller: bmc
+    post:
+      description: Gets all items
+      parameters:
+        - in: path
+          name: id
+          description: Id of the current BMC.
+          required: true
+          type: number
+        - in: body
+          name: CanvasItem
+          description: test
+          schema:
+            $ref: "#/definitions/CanvasDataItem"
+      responses:
+        "200":
+          description: Success
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -122,6 +157,10 @@ definitions:
   CanvasDataItem:
     type: object
     properties:
+      id:
+        type: number
+      categoryId:
+        type: number
       title:
         type: string
       description:
