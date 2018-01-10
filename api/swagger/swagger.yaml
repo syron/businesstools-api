@@ -152,40 +152,37 @@ definitions:
       designedFor:
         type: string
       keyResources:
-        type: array
-        items:
-          $ref: "#/definitions/CanvasDataItem"
+        $ref: "#/definitions/CanvasCategory"
       channels:
-        type: array
-        items:
-          $ref: "#/definitions/CanvasDataItem"
+        $ref: "#/definitions/CanvasCategory"
       costStructure:
-        type: array
-        items:
-          $ref: "#/definitions/CanvasDataItem"
+        $ref: "#/definitions/CanvasCategory"
       customerRelationships:
-        type: array
-        items:
-          $ref: "#/definitions/CanvasDataItem"
+        $ref: "#/definitions/CanvasCategory"
       customerSegments:
-        type: array
-        items:
-          $ref: "#/definitions/CanvasDataItem"
+        $ref: "#/definitions/CanvasCategory"
       keyActivities:
-        type: array
-        items:
-          $ref: "#/definitions/CanvasDataItem"
+        $ref: "#/definitions/CanvasCategory"
       keyPartners:
-        type: array
-        items:
-          $ref: "#/definitions/CanvasDataItem"
+        $ref: "#/definitions/CanvasCategory"
       revenueStreams:
-        type: array
-        items:
-          $ref: "#/definitions/CanvasDataItem"
+        $ref: "#/definitions/CanvasCategory"
       valuePropositions:
+        $ref: "#/definitions/CanvasCategory"
+  CanvasCategory:
+    type: object
+    properties:
+      id: 
+        type: number
+      name: 
+        type: string
+      description:
+        type: string
+      singularName: 
+        type: string
+      items: 
         type: array
-        items:
+        items: 
           $ref: "#/definitions/CanvasDataItem"
   CanvasDataItem:
     type: object

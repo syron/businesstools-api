@@ -46,15 +46,69 @@ function bmcById(req, res) {
   // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
   var canvasData = {
     designedFor: "",
-    keyResources: [],
-    channels: [],
-    costStructure: [],
-    customerRelationships: [],
-    customerSegments:	[],
-    keyActivities: [],
-    keyPartners: [],
-    revenueStreams: [],
-    valuePropositions: [] 
+    keyPartners: {
+      id: 1,
+      name: 'Key Partners',
+      description: 'Key Partners are the relationships that you have with other business, governmental, or non-consumer entities that help your business model work. These can be the relationships that your company has with your suppliers, your manufacturers, business partners, etc. These partnerships that you will undoubtedly create will be forces that help your business succeed in areas that would be inefficient for you to do yourself.',
+      singularName: 'Key Partner',
+      items: []
+    },
+    channels: {
+      id: 2,
+      name: 'Channels',
+      description: '',
+      singularName: 'Channel',
+      items: []
+    },
+    costStructure: {
+      id: 3,
+      name: 'Cost Structures',
+      description: '',
+      singularName: 'Cost Structure',
+      items: []
+    },
+    customerRelationships: {
+      id: 4,
+      name: 'Customer Relationships',
+      description: '',
+      singularName: 'Customer Relationship',
+      items: []
+    },
+    customerSegments:	{
+      id: 5,
+      name: 'Customer Segments',
+      description: '',
+      singularName: 'Customer Segment',
+      items: []
+    },
+    keyActivities: {
+      id: 6,
+      name: 'Key Activities',
+      description: '',
+      singularName: 'Key Activity',
+      items: []
+    },
+    keyResources: {
+      id: 7,
+      name: 'Key Resources',
+      description: '',
+      singularName: 'Key Resources',
+      items: []
+    },
+    revenueStreams: {
+      id: 8,
+      name: 'Revenue Streams',
+      description: '',
+      singularName: 'Revenue Stream',
+      items: []
+    },
+    valuePropositions: {
+      id: 9,
+      name: 'Value Propositions',
+      description: '',
+      singularName: 'Value Proposition',
+      items: []
+    } 
   };
 
   var entities = [
@@ -75,34 +129,26 @@ function bmcById(req, res) {
   canvasData.id = 1;
   canvasData.name = 'Test Canvas';
 
-  canvasData.channels = []; // 1
-  canvasData.channels.push(entities[0]);
-  canvasData.channels.push(entities[1]);
+  // entities to models
+  canvasData.channels.items.push(entities[0]);
+  canvasData.channels.items.push(entities[1]);
 
-  canvasData.costStructure = []; // 2
-  canvasData.costStructure.push(entities[2]);
+  canvasData.costStructure.items.push(entities[2]);
 
-  canvasData.customerRelationships = []; // 3
-  canvasData.customerRelationships.push(entities[3]);
+  canvasData.customerRelationships.items.push(entities[3]);
+  
+  canvasData.customerSegments.items.push(entities[4]);
 
-  canvasData.customerSegments = []; // 4
-  canvasData.customerSegments.push(entities[4]);
+  canvasData.keyActivities.items.push(entities[5]);
 
-  canvasData.keyActivities = []; // 5
-  canvasData.keyActivities.push(entities[5]);
+  canvasData.keyPartners.items.push(entities[6]);
 
-  canvasData.keyPartners = []; // 6
-  canvasData.keyPartners.push(entities[6]);
+  canvasData.keyResources.items.push(entities[7]);
+  canvasData.keyResources.items.push(entities[8]);
 
-  canvasData.keyResources = []; // 7
-  canvasData.keyResources.push(entities[7]);
-  canvasData.keyResources.push(entities[8]);
+  canvasData.revenueStreams.items.push(entities[9]);
 
-  canvasData.revenueStreams = [];
-  canvasData.revenueStreams.push(entities[9]);
-
-  canvasData.valuePropositions = [];
-  canvasData.valuePropositions.push(entities[10]);
+  canvasData.valuePropositions.items.push(entities[10]);
 
   // this sends back a JSON response which is a single string
   res.json(canvasData);
