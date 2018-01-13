@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{AB3BC365-BAB1-4F5B-809B-FB930A4526ED}|Default">
+  <MonoDevelop.Ide.ItemProperties.businesstools PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="businesstools/Controllers/ValuesController.cs">
+    <Files>
+      <File FileName="businesstools/Controllers/ValuesController.cs" Line="9" Column="19" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
