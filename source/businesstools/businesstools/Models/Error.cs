@@ -7,7 +7,7 @@ namespace businesstools.Models
         {
         }
 
-        public Error(int code, int message) {
+        public Error(int code, string message) {
             Code = code;
             Message = message;
         }
