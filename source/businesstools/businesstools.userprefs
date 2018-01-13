@@ -1,8 +1,12 @@
 ﻿<Properties StartupConfiguration="{AB3BC365-BAB1-4F5B-809B-FB930A4526ED}|Default">
   <MonoDevelop.Ide.ItemProperties.businesstools PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="businesstools/Controllers/ValuesController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="businesstools/Models/Error.cs">
     <Files>
-      <File FileName="businesstools/Controllers/ValuesController.cs" Line="9" Column="19" />
+      <File FileName="businesstools/Controllers/ValuesController.cs" Line="24" Column="10" />
+      <File FileName="businesstools/Models/CanvasDataItem.cs" Line="15" Column="46" />
+      <File FileName="businesstools/Models/CanvasCategory.cs" Line="11" Column="9" />
+      <File FileName="businesstools/Models/CanvasData.cs" Line="24" Column="1" />
+      <File FileName="businesstools/Models/Error.cs" Line="10" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
