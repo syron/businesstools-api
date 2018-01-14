@@ -2,14 +2,13 @@
   <MonoDevelop.Ide.ItemProperties.businesstools PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="businesstools/Controllers/BusinessModelCanvasController.cs">
     <Files>
-      <File FileName="businesstools/Controllers/BusinessModelCanvasController.cs" Line="52" Column="42" />
+      <File FileName="businesstools/Data/Repositories/BusinessModelCanvasRepository.cs" Line="16" Column="31" />
+      <File FileName="businesstools/Controllers/BusinessModelCanvasController.cs" Line="25" Column="45" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/robertmayer/Desktop/GIT/businesstools-api/source/businesstools/businesstools/Controllers/BusinessModelCanvasController.cs" relfile="businesstools/Controllers/BusinessModelCanvasController.cs" line="53" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />

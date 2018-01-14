@@ -8,6 +8,7 @@ using MongoDB.Bson;
 using businesstools.Models;
 using Microsoft.Extensions.Options;
 using businesstools.Data.Repositories;
+using businesstools.Models.MongoDb;
 
 namespace businesstools.Controllers
 {
@@ -22,14 +23,14 @@ namespace businesstools.Controllers
 
         // GET api/values
         [HttpGet]
-        public async Task<List<CanvasData>> Get()
+        public async Task<List<CanvasDataRaw>> Get()
         {
             return await _repository.GetAll();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<CanvasData> Get(string id)
+        public async Task<CanvasDataRaw> Get(string id)
         {
             return await _repository.GetById(id);
         }
@@ -47,7 +48,7 @@ namespace businesstools.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<bool> Patch(string id, [FromBody]CanvasData value) 
+        public async Task<bool> Patch(string id, [FromBody]CanvasDataRaw value) 
         {
             value._id = new ObjectId(id);
             return await _repository.Update(value);

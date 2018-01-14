@@ -10,6 +10,7 @@
     <Folder Include="Data\" />
     <Folder Include="Data\Repositories\" />
     <Folder Include="Data\Context\" />
+    <Folder Include="Models\MongoDb\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,4 +22,8 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Models\MongoDb\CanvasData.cs" />
+    <Compile Remove="Models\MongoDb\CanvasCategoryRaw %28copy%29.cs" />
+  </ItemGroup>
 </Project>

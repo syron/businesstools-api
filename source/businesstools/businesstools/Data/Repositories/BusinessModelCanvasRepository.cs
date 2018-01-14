@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using businesstools.Models;
+using businesstools.Models.MongoDb;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -12,13 +14,13 @@ namespace businesstools.Data.Repositories
     {
         protected static IMongoClient _client;
         protected static IMongoDatabase _database;
-        protected IMongoCollection<CanvasData> _collection;
+        protected IMongoCollection<CanvasDataRaw> _bmcCollection;
 
         public BusinessModelCanvasRepository(businesstools.Models.Settings settings)
         {
             _client = new MongoClient(settings.ConnectionString);
             _database = _client.GetDatabase(settings.Database);
-            _collection = _database.GetCollection<CanvasData>("businessmodelcanvas");
+            _bmcCollection = _database.GetCollection<CanvasDataRaw>("businessmodelcanvas");
         }
 
         public Task<bool> Delete(string id)
@@ -26,20 +28,20 @@ namespace businesstools.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<List<CanvasData>> GetAll()
+        public Task<List<CanvasDataRaw>> GetAll()
         {
-            return _collection.Find(new BsonDocument()).ToListAsync();
+            return _bmcCollection.Find(new BsonDocument()).ToListAsync();
         }
 
-        public Task<CanvasData> GetById(string id)
+        public Task<CanvasDataRaw> GetById(string id)
         {
-            return _collection.Find(new BsonDocument { { "_id", new ObjectId(id) } }).FirstAsync();
+            return _bmcCollection.Find(new BsonDocument { { "_id", new ObjectId(id) } }).FirstAsync();
         }
 
-        public async Task<bool> Update(CanvasData canvas)
+        public async Task<bool> Update(CanvasDataRaw canvas)
         {
-            var filter = Builders<CanvasData>.Filter.Eq(s => s._id, canvas._id);
-            var result = await this._collection.ReplaceOneAsync(filter, canvas);
+            var filter = Builders<CanvasDataRaw>.Filter.Eq(s => s._id, canvas._id);
+            var result = await this._bmcCollection.ReplaceOneAsync(filter, canvas);
             return result.IsAcknowledged;
         }
     }
