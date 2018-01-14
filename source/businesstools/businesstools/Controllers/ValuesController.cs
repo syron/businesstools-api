@@ -3,17 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using businesstools.Models;
+using Microsoft.Extensions.Options;
 
 namespace businesstools.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        public string collectionId = "businessmodelcanvas";
+        public IMongoClient _client;
+        public IMongoDatabase _db;
+
+        public ValuesController(IOptions<businesstools.Models.Settings> settings) {
+            _client = new MongoClient(settings.Value.ConnectionString);
+            _db = _client.GetDatabase(settings.Value.Database);
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public object Get()
         {
-            return new string[] { "value1", "value2" };
+            var collection = _db.GetCollection<CanvasData>(collectionId);
+            return collection.Find(new BsonDocument()).ToList();
         }
 
         // GET api/values/5
