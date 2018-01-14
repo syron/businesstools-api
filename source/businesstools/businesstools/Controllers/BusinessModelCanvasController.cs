@@ -12,11 +12,11 @@ using businesstools.Data.Repositories;
 namespace businesstools.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class BusinessModelCanvasController : Controller
     {
         protected IBusinessModelCanvasRepository _repository;
 
-        public ValuesController(IBusinessModelCanvasRepository repository) {
+        public BusinessModelCanvasController(IBusinessModelCanvasRepository repository) {
             _repository = repository;
         }
 
