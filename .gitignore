@@ -34,3 +34,4 @@ node_modules
 config/runtime.yaml
 
 configuration.json
+appsettings.Development.json

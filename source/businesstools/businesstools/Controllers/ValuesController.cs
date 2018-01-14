@@ -46,6 +46,12 @@ namespace businesstools.Controllers
         {
         }
 
+        [HttpPatch("{id}")]
+        public void Patch(int id, [FromBody]string value) 
+        {
+            
+        }
+
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
