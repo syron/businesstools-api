@@ -11,6 +11,9 @@ namespace businesstools.Models
         }
 
         public ObjectId _id { get; set; }
+        public string CanvasId { get {
+                return _id.ToString(); 
+            } }
         public string Name { get; set; }
         public string DesignedFor { get; set; }
         public CanvasCategory KeyResources { get; set; }

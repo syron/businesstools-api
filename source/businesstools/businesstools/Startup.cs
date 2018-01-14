@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using businesstools.Data.Repositories;
 using businesstools.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,11 +27,12 @@ namespace businesstools
         {
             services.AddMvc();
 
-            services.Configure<Settings>(options =>
+
+            services.AddScoped<IBusinessModelCanvasRepository>(bmcr => new BusinessModelCanvasRepository(new Settings() 
             {
-                options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
-                options.Database = Configuration.GetSection("MongoDb:Database").Value;
-            });
+                ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value,
+                Database = Configuration.GetSection("MongoDb:Database").Value
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

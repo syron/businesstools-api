@@ -7,34 +7,31 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using businesstools.Models;
 using Microsoft.Extensions.Options;
+using businesstools.Data.Repositories;
 
 namespace businesstools.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        public string collectionId = "businessmodelcanvas";
-        public IMongoClient _client;
-        public IMongoDatabase _db;
+        protected IBusinessModelCanvasRepository _repository;
 
-        public ValuesController(IOptions<businesstools.Models.Settings> settings) {
-            _client = new MongoClient(settings.Value.ConnectionString);
-            _db = _client.GetDatabase(settings.Value.Database);
+        public ValuesController(IBusinessModelCanvasRepository repository) {
+            _repository = repository;
         }
 
         // GET api/values
         [HttpGet]
-        public object Get()
+        public async Task<List<CanvasData>> Get()
         {
-            var collection = _db.GetCollection<CanvasData>(collectionId);
-            return collection.Find(new BsonDocument()).ToList();
+            return await _repository.GetAll();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<CanvasData> Get(string id)
         {
-            return "value";
+            return await _repository.GetById(id);
         }
 
         // POST api/values
