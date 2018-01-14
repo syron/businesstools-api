@@ -43,6 +43,12 @@ namespace businesstools
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(options => {
+                options.AllowAnyHeader();
+                options.AllowAnyMethod();
+                options.AllowAnyOrigin();
+            });
+
             app.UseMvc();
         }
     }

@@ -36,9 +36,11 @@ namespace businesstools.Data.Repositories
             return _collection.Find(new BsonDocument { { "_id", new ObjectId(id) } }).FirstAsync();
         }
 
-        public Task<bool> Update(CanvasData canvas)
+        public async Task<bool> Update(CanvasData canvas)
         {
-            throw new NotImplementedException();
+            var filter = Builders<CanvasData>.Filter.Eq(s => s._id, canvas._id);
+            var result = await this._collection.ReplaceOneAsync(filter, canvas);
+            return result.IsAcknowledged;
         }
     }
 }

@@ -42,14 +42,15 @@ namespace businesstools.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(string id, [FromBody]string value)
         {
         }
 
         [HttpPatch("{id}")]
-        public void Patch(int id, [FromBody]string value) 
+        public async Task<bool> Patch(string id, [FromBody]CanvasData value) 
         {
-            
+            value._id = new ObjectId(id);
+            return await _repository.Update(value);
         }
 
         // DELETE api/values/5
