@@ -27,7 +27,7 @@ namespace businesstools.Controllers
         [HttpGet]
         public async Task<List<CanvasDataRaw>> Get()
         {
-            var scopes = HttpContext.User.FindFirst("http://schemas.microsoft.com/identity/claims/scope")?.Value;
+            //var scopes = HttpContext.User.FindFirst("http://schemas.microsoft.com/identity/claims/scope")?.Value;
             return await _repository.GetAll();
         }
 

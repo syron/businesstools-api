@@ -29,24 +29,26 @@ namespace businesstools
         {
             services.AddMvc();
 
+
+            var authority = Configuration.GetSection("Auth0:Authority").Value;
+            var audience = Configuration.GetSection("Auth0:Audience").Value;
             services.AddAuthentication(options =>
             {
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-                .AddJwtBearer(jwtOptions =>
-                {
-                    jwtOptions.Authority = $"https://login.microsoftonline.com/tfp/{Configuration["AzureAdB2C:Tenant"]}/{Configuration["AzureAdB2C:Policy"]}/v2.0/";
-                    jwtOptions.Audience = Configuration["AzureAdB2C:ClientId"];
-                    jwtOptions.Events = new JwtBearerEvents
-                    {
-                        OnAuthenticationFailed = AuthenticationFailed
-                    };
-                });
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = authority;
+                options.Audience = audience;
+            });
+
+            var mongoDbConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
+            var database = Configuration.GetSection("MongoDb:Database").Value;
             services.AddScoped<IBusinessModelCanvasRepository>(bmcr => new BusinessModelCanvasRepository(new Settings() 
             {
-                ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value,
-                Database = Configuration.GetSection("MongoDb:Database").Value
+                ConnectionString = mongoDbConnectionString,
+                Database = database
             }));
         }
 
@@ -58,6 +60,8 @@ namespace businesstools
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
+
             app.UseCors(options => {
                 options.AllowAnyHeader();
                 options.AllowAnyMethod();
@@ -65,15 +69,6 @@ namespace businesstools
             });
 
             app.UseMvc();
-        }
-
-        private Task AuthenticationFailed(AuthenticationFailedContext arg)
-        {
-            // For debugging purposes only!
-            var s = $"AuthenticationFailed: {arg.Exception.Message}";
-            arg.Response.ContentLength = s.Length;
-            arg.Response.Body.Write(Encoding.UTF8.GetBytes(s), 0, s.Length);
-            return Task.FromResult(0);
         }
     }
 }
