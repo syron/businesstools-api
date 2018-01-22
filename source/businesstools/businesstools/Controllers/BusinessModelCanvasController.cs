@@ -9,9 +9,11 @@ using businesstools.Models;
 using Microsoft.Extensions.Options;
 using businesstools.Data.Repositories;
 using businesstools.Models.MongoDb;
+using Microsoft.AspNetCore.Authorization;
 
 namespace businesstools.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class BusinessModelCanvasController : Controller
     {
@@ -25,6 +27,7 @@ namespace businesstools.Controllers
         [HttpGet]
         public async Task<List<CanvasDataRaw>> Get()
         {
+            var scopes = HttpContext.User.FindFirst("http://schemas.microsoft.com/identity/claims/scope")?.Value;
             return await _repository.GetAll();
         }
 
