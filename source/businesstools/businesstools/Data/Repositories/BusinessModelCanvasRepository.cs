@@ -23,9 +23,21 @@ namespace businesstools.Data.Repositories
             _bmcCollection = _database.GetCollection<CanvasDataRaw>("businessmodelcanvas");
         }
 
-        public Task<bool> Delete(string id)
+        public async Task<bool> Delete(string id)
         {
-            throw new NotImplementedException();
+            try {
+                var _id = new ObjectId(id);
+                var filter = Builders<CanvasDataRaw>.Filter.Eq(s => s._id, _id);
+                var result = await _bmcCollection.DeleteOneAsync(filter);
+
+                if (result.DeletedCount >= 1)
+                    return true;
+
+                return false;
+            }
+            catch {
+                return false;
+            }
         }
 
         public Task<List<CanvasDataRaw>> GetAll()
@@ -33,9 +45,9 @@ namespace businesstools.Data.Repositories
             return _bmcCollection.Find(new BsonDocument()).ToListAsync();
         }
 
-        public Task<CanvasDataRaw> GetById(string id)
+        public async Task<CanvasDataRaw> GetById(string id)
         {
-            return _bmcCollection.Find(new BsonDocument { { "_id", new ObjectId(id) } }).FirstAsync();
+            return await _bmcCollection.Find(new BsonDocument { { "_id", new ObjectId(id) } }).FirstAsync();
         }
 
         public async Task<bool> Update(CanvasDataRaw canvas)
@@ -43,6 +55,18 @@ namespace businesstools.Data.Repositories
             var filter = Builders<CanvasDataRaw>.Filter.Eq(s => s._id, canvas._id);
             var result = await this._bmcCollection.ReplaceOneAsync(filter, canvas);
             return result.IsAcknowledged;
+        }
+
+        public async Task<bool> Add(CanvasDataRaw canvas) {
+            try
+            {
+                await this._bmcCollection.InsertOneAsync(canvas);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
         }
     }
 }

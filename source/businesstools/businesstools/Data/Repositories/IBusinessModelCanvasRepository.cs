@@ -10,6 +10,7 @@ namespace businesstools.Data.Repositories
     {
         Task<List<CanvasDataRaw>> GetAll();
         Task<CanvasDataRaw> GetById(string id);
+        Task<bool> Add(CanvasDataRaw canvas);
         Task<bool> Update(CanvasDataRaw canvas);
         Task<bool> Delete(string id);
     }

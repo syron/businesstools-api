@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{AB3BC365-BAB1-4F5B-809B-FB930A4526ED}|Default">
   <MonoDevelop.Ide.ItemProperties.businesstools PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="businesstools/Startup.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="businesstools/Data/Repositories/BusinessModelCanvasRepository.cs">
     <Files>
-      <File FileName="businesstools/Data/Repositories/BusinessModelCanvasRepository.cs" Line="21" Column="23" />
-      <File FileName="businesstools/Startup.cs" Line="41" Column="14" />
-      <File FileName="businesstools/Controllers/BusinessModelCanvasController.cs" Line="14" Column="35" />
+      <File FileName="businesstools/Startup.cs" Line="49" Column="14" />
+      <File FileName="businesstools/Controllers/BusinessModelCanvasController.cs" Line="22" Column="60" />
+      <File FileName="businesstools/appsettings.Development.json" Line="11" Column="23" />
+      <File FileName="businesstools/Data/Repositories/BusinessModelCanvasRepository.cs" Line="46" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

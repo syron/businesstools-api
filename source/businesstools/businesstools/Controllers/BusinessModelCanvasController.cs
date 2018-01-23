@@ -40,8 +40,19 @@ namespace businesstools.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<bool> Post([FromBody]CanvasDataRaw canvas)
         {
+            canvas._id = ObjectId.GenerateNewId();
+            canvas.Channels = new CanvasCategoryRaw();
+            canvas.CostStructure = new CanvasCategoryRaw();
+            canvas.CustomerRelationships = new CanvasCategoryRaw();
+            canvas.CustomerSegments = new CanvasCategoryRaw();
+            canvas.KeyActivities = new CanvasCategoryRaw();
+            canvas.KeyPartners = new CanvasCategoryRaw();
+            canvas.KeyResources = new CanvasCategoryRaw();
+            canvas.RevenueStreams = new CanvasCategoryRaw();
+            canvas.ValuePropositions = new CanvasCategoryRaw();
+            return await _repository.Add(canvas);
         }
 
         // PUT api/values/5
@@ -51,16 +62,17 @@ namespace businesstools.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<bool> Patch(string id, [FromBody]CanvasDataRaw value) 
+        public async Task<bool> Patch(string id, [FromBody]CanvasDataRaw canvas) 
         {
-            value._id = new ObjectId(id);
-            return await _repository.Update(value);
+            canvas._id = new ObjectId(id);
+            return await _repository.Update(canvas);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<bool> Delete(string id)
         {
+            return await _repository.Delete(id);
         }
     }
 }
