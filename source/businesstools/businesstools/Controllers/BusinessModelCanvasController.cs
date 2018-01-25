@@ -10,6 +10,8 @@ using Microsoft.Extensions.Options;
 using businesstools.Data.Repositories;
 using businesstools.Models.MongoDb;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.Diagnostics;
 
 namespace businesstools.Controllers
 {
@@ -23,19 +25,22 @@ namespace businesstools.Controllers
             _repository = repository;
         }
 
+        private string GetUserId() {
+            return this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        }
+
         // GET api/values
         [HttpGet]
         public async Task<List<CanvasDataRaw>> Get()
         {
-            //var scopes = HttpContext.User.FindFirst("http://schemas.microsoft.com/identity/claims/scope")?.Value;
-            return await _repository.GetAll();
+            return await _repository.GetAll(GetUserId());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public async Task<CanvasDataRaw> Get(string id)
         {
-            return await _repository.GetById(id);
+            return await _repository.GetById(id, GetUserId());
         }
 
         // POST api/values
@@ -43,6 +48,7 @@ namespace businesstools.Controllers
         public async Task<bool> Post([FromBody]CanvasDataRaw canvas)
         {
             canvas._id = ObjectId.GenerateNewId();
+            canvas.BelongsTo = GetUserId();
             canvas.Channels = new CanvasCategoryRaw();
             canvas.CostStructure = new CanvasCategoryRaw();
             canvas.CustomerRelationships = new CanvasCategoryRaw();
@@ -64,7 +70,12 @@ namespace businesstools.Controllers
         [HttpPatch("{id}")]
         public async Task<bool> Patch(string id, [FromBody]CanvasDataRaw canvas) 
         {
+            var canvasBefore = await _repository.GetById(id);
+            if (canvasBefore.BelongsTo != GetUserId())
+                throw new AccessViolationException("You are not allowed to change someone else's canvas.");
+
             canvas._id = new ObjectId(id);
+            canvas.BelongsTo = GetUserId();
             return await _repository.Update(canvas);
         }
 
@@ -72,6 +83,10 @@ namespace businesstools.Controllers
         [HttpDelete("{id}")]
         public async Task<bool> Delete(string id)
         {
+            var canvasBefore = await _repository.GetById(id);
+            if (canvasBefore.BelongsTo != GetUserId())
+                throw new AccessViolationException("You are not allowed to delete someone else's canvas.");
+
             return await _repository.Delete(id);
         }
     }

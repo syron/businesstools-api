@@ -17,6 +17,7 @@ namespace businesstools.Models.MongoDb
             } }
         public string Name { get; set; }
         public string DesignedFor { get; set; }
+        public string BelongsTo { get; set; }
         public CanvasCategoryRaw KeyResources { get; set; }
         public CanvasCategoryRaw Channels { get; set; }
         public CanvasCategoryRaw CostStructure { get; set; }

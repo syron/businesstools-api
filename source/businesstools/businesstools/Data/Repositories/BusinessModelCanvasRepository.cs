@@ -40,19 +40,38 @@ namespace businesstools.Data.Repositories
             }
         }
 
-        public Task<List<CanvasDataRaw>> GetAll()
+        public async Task<List<CanvasDataRaw>> GetAll()
         {
-            return _bmcCollection.Find(new BsonDocument()).ToListAsync();
+            return await _bmcCollection.Find(new BsonDocument()).ToListAsync();
+        }
+
+        public async Task<List<CanvasDataRaw>> GetAll(string userId)
+        {
+            var builder = Builders<CanvasDataRaw>.Filter;
+            var filter = builder.Eq("BelongsTo", userId);
+            return await _bmcCollection.Find(filter).ToListAsync();
         }
 
         public async Task<CanvasDataRaw> GetById(string id)
         {
-            return await _bmcCollection.Find(new BsonDocument { { "_id", new ObjectId(id) } }).FirstAsync();
+            var builder = Builders<CanvasDataRaw>.Filter;
+            var filter = builder.Eq("_id", new ObjectId(id));
+
+            return await _bmcCollection.Find(filter).FirstAsync();
+        }
+
+        public async Task<CanvasDataRaw> GetById(string id, string userId)
+        {
+            var builder = Builders<CanvasDataRaw>.Filter;
+            var filter = builder.Eq("_id", new ObjectId(id)) & builder.Eq("BelongsTo", userId);
+
+            return await _bmcCollection.Find(filter).FirstAsync();
         }
 
         public async Task<bool> Update(CanvasDataRaw canvas)
         {
-            var filter = Builders<CanvasDataRaw>.Filter.Eq(s => s._id, canvas._id);
+            var builder = Builders<CanvasDataRaw>.Filter;
+            var filter = builder.Eq(s => s._id, canvas._id);
             var result = await this._bmcCollection.ReplaceOneAsync(filter, canvas);
             return result.IsAcknowledged;
         }

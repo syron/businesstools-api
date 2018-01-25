@@ -16,6 +16,7 @@ namespace businesstools.Models
             } }
         public string Name { get; set; }
         public string DesignedFor { get; set; }
+        public string BelongsTo { get; set; }
         public CanvasCategory KeyResources { get; set; }
         public CanvasCategory Channels { get; set; }
         public CanvasCategory CostStructure { get; set; }
